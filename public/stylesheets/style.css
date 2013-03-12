@@ -1,8 +1,28 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+#character .skill {
+  display: block;
 }
-
-a {
-  color: #00B7FF;
+#character .skill h3,
+#character .skill h4,
+#character .skill span {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+#character .skill h3 {
+  width: 200px;
+  margin: 10px;
+}
+#character .skill .up,
+#character .skill .down {
+  display: inline-block;
+  width: 32px;
+  height: 21px;
+  background-repeat: none;
+  margin-left: 10px;
+}
+#character .skill .up {
+  background-image: url('/images/up.png');
+}
+#character .skill .down {
+  background-image: url('/images/down.png');
 }

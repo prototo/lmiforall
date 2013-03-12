@@ -118,8 +118,11 @@ $(function() {
     var elm = $('#bestJob'),
         job = character.compareJobs(jobs);
 
+  console.log(job);
+
     elm.find('#title').html(job.title);
-    elm.find('#description').html(job.description);
+    elm.find('.description').html(job.description);
+    elm.find('.pay span').html(job.pay + " ");
     
     _.each(job.skills, function(skill) {
       console.log(skill.name, skill.ratio);

@@ -20,6 +20,11 @@ block content
               | %)
     div#bestJob
       h2#title
+      h4.description
+      h3.pay 
+        |£
+        span
+        | per week
       div.skills
         each skill in ['mathreason', 'programming', 'techdesign', 'mean', 'numbers', 'science', 'maths', 'principal', 'ordering', 'dedreason']
           div.skill(class=skill, 'data-skill'=skill)

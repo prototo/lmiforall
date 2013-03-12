@@ -22,6 +22,9 @@ body {
   -moz-border-image: url('/images/border.png') 21 21 21 21 repeat;
   -webkit-border-image: url('/images/border.png') 21 21 21 21 repeat;
 }
+#bestJob {
+  display: none;
+}
 #character,
 #bestJob {
   background: #eee;

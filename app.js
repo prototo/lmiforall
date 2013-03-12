@@ -4,12 +4,18 @@
  */
 
 var express = require('express')
-  , routes = require('./routes')
-  , user = require('./routes/user')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , mongoose = require('mongoose');
 
-var app = express();
+db = mongoose.connect('mongodb://localhost/lmiforall');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error'));
+db.once('open', function() {
+  console.log('connected to db');
+});
+
+app = express();
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
@@ -29,8 +35,7 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-app.get('/', routes.index);
-app.get('/users', user.list);
+var routes = require('./routes/root');
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

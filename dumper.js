@@ -11,16 +11,7 @@ db.once('open', function() {
   scrape();
 });
 
-var JobSchema = new mongoose.Schema({
-  soc: Number,
-  title: String,
-  description: String,
-  skills: [{
-    name: String,
-    ratio: Number
-  }]
-});
-var Job = mongoose.model('job', JobSchema);
+var Job = require('./models/job');
 
 var socs = [ 2136, 2137 ],
     base = 'http://api.lmiforall.org.uk/api/';
@@ -29,36 +20,38 @@ function scrape() {
   var jobs = socs.length;
 
   (function exitWhenReady() {
-    console.log('jobs left', jobs);
     if (!jobs) process.exit();
-
     setTimeout(exitWhenReady, 500);
   })();
 
   _.each(socs, function(code) {
     Job.count({ soc: code }, function(err, count) {
       if (!count) {
-        console.log('requesting', code);
-
         request(base + 'soc/code/' + code, function(err, res, body) {
           var soc = JSON.parse(body);
-          console.log(soc.title);
 
           request(base + 'onet/levels/' + code, function(err, res, body) {
             var onet = JSON.parse(body),
                 skills = normalise(onet);
 
-            var job = new Job({
-              soc: code,
-              title: soc.title,
-              description: soc.description,
-              skills: skills
-            });
+            request(base + 'ashe/estimate?soc=' + code, function(err, res, body) {
+              var ashe = JSON.parse(body),
+                  pay = ashe.years[ashe.years.length - 1].estpay;
+                  pay = Math.round(pay);
+              
+              var job = new Job({
+                soc: code,
+                title: soc.title,
+                description: soc.description,
+                skills: skills,
+                pay: pay
+              });
 
-            job.save(function(err, job) {
-              if (err) console.error(err);
-              else console.log('saved', soc.title);
-              jobs--;
+              job.save(function(err, job) {
+                if (err) console.error(err);
+                else console.log('saved', soc.title);
+                jobs--;
+              });
             });
           });
         });

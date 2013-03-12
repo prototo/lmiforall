@@ -1,17 +1,59 @@
-#character {
+
+body {
+  background: #131313;
+  padding: 10px;
+}
+
+#pageTitle {
+  text-align: center;
+  background: #eee;
+  width: 970px;
+  margin: auto;
+  margin-top: 25px;
+}
+
+#content {
+  display: block;
+  width: 1045px;
+  margin: auto;
+}
+
+#pageTitle, #character, #bestJob {
+  border-width: 21px 21px 21px 21px;
+  border-image: url('/images/border.png') 21 21 21 21 repeat;
+  -moz-border-image: url('/images/border.png') 21 21 21 21 repeat;
+  -webkit-border-image: url('/images/border.png') 21 21 21 21 repeat;
+}
+
+#character, #bestJob {
+  background: #eee;
+  display: inline-block;
+  vertical-align: top;
+  margin: 25px;
+  padding: 0 20px 10px 10px;
+  width: 400px;
+
+  #title {
+    text-align: center;
+  }
+
+  #points {
+    margin-left: 10px;
+  }
 
   .skill {
     display: block;
+    margin-bottom: 10px;
   
     h3, h4, span {
       display: inline-block;
       margin: 0;
       padding: 0;
+      margin-left: 10px;
     }
 
     h3 {
       width: 200px;
-      margin: 10px;
     }
 
     .up, .down {
@@ -19,7 +61,7 @@
       width: 32px;
       height: 21px;
       background-repeat: none;
-      margin-left: 10px;
+      cursor: pointer;
     }
 
     .up {

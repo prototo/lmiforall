@@ -13,7 +13,7 @@ db.once('open', function() {
 
 var Job = require('./models/job');
 
-var socs = [ 2136, 2137 ],
+var socs = [ 2136, 2137, 4217, 3132, 2135, 3421, 4214, 4215, 5245, 2139, 2126, 4113, 5421, 7215, 3412, 3421, 3539, 3417, 3561 ],
     base = 'http://api.lmiforall.org.uk/api/';
 
 function scrape() {

@@ -1,18 +1,30 @@
 extends layout
 
 block content
-  h1= title
-  div#character
-    h3#points Job points: 
-      span
-    div.skills
-      each skill in ['mathreason', 'programming', 'techdesign', 'mean', 'numbers', 'science', 'maths', 'principal', 'ordering', 'dedreason']
-        div.skill(class=skill, 'data-skill'=skill)
-          h3= skill
-          h4.level 0
-          h4.ratio
-            | (
-            span
-            | %)
-          span.up
-          span.down
+  h1#pageTitle= title
+  div#content
+    div#character
+      h1#title You!
+      h3#points Job points: 
+        span
+      div.skills
+        each skill in ['mathreason', 'programming', 'techdesign', 'mean', 'numbers', 'science', 'maths', 'principal', 'ordering', 'dedreason']
+          div.skill(class=skill, 'data-skill'=skill)
+            h3= skill
+            span.up
+            span.down
+            h4.level 0
+            h4.ratio
+              | (
+              span
+              | %)
+    div#bestJob
+      h2#title
+      div.skills
+        each skill in ['mathreason', 'programming', 'techdesign', 'mean', 'numbers', 'science', 'maths', 'principal', 'ordering', 'dedreason']
+          div.skill(class=skill, 'data-skill'=skill)
+            h3=skill
+            h4.ratio
+              span
+              | %
+

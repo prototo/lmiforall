@@ -57,9 +57,18 @@ $(function() {
 
     // compare the user with a list of jobs
     function compareJobs(jobs) {
+      var bestScore = 9999, bestJob;
+
       _.each(jobs, function(job) {
-        _compareJob(job);
+        var score = _compareJob(job);
+
+        if (!bestJob || score < bestScore) {
+          bestJob = job;
+          bestScore = score;
+        }
       });
+
+      return bestJob;
     }
 
     // compare the user with a job
@@ -73,7 +82,7 @@ $(function() {
             totalDiff += diff;
       });
 
-      console.log(totalDiff);
+      return totalDiff;
     }
 
     function render() {
@@ -84,7 +93,6 @@ $(function() {
 
       _.each(skillList, function(skill) {
         elm.find('.skill.' + skill).find('.level').html(skills[skill]);
-        console.log(ratios[skill]);
         elm.find('.skill.' + skill).find('.ratio span').html(ratios[skill]);
       });
 
@@ -95,6 +103,9 @@ $(function() {
       name: name,
       points: points,
       skills: skills,
+      ratios: ratios,
+
+      compareJobs: compareJobs,
 
       skillUp: skillUp,
       skillDown: skillDown,
@@ -103,7 +114,18 @@ $(function() {
     };
   })();
 
-console.log(character);
+  window.bestJob = function() {
+    var elm = $('#bestJob'),
+        job = character.compareJobs(jobs);
+
+    elm.find('#title').html(job.title);
+    elm.find('#description').html(job.description);
+    
+    _.each(job.skills, function(skill) {
+      console.log(skill.name, skill.ratio);
+      elm.find('.skill.' + skill.name).find('.ratio span').html(skill.ratio);
+    });
+  }
 
   // DOM EVENTS
   $(document).on('click', '.skill .up', function(e) {
@@ -112,6 +134,7 @@ console.log(character);
 
     character.skillUp(name);
     character.render();
+    bestJob();
   });
 
   $(document).on('click', '.skill .down', function(e) {
@@ -120,6 +143,7 @@ console.log(character);
 
     character.skillDown(name);
     character.render();
+    bestJob();
   });
 
   // INIT CODES

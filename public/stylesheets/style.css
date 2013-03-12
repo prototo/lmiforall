@@ -1,28 +1,79 @@
-#character .skill {
+body {
+  background: #131313;
+  padding: 10px;
+}
+#pageTitle {
+  text-align: center;
+  background: #eee;
+  width: 970px;
+  margin: auto;
+  margin-top: 25px;
+}
+#content {
   display: block;
+  width: 1045px;
+  margin: auto;
+}
+#pageTitle,
+#character,
+#bestJob {
+  border-width: 21px 21px 21px 21px;
+  border-image: url('/images/border.png') 21 21 21 21 repeat;
+  -moz-border-image: url('/images/border.png') 21 21 21 21 repeat;
+  -webkit-border-image: url('/images/border.png') 21 21 21 21 repeat;
+}
+#character,
+#bestJob {
+  background: #eee;
+  display: inline-block;
+  vertical-align: top;
+  margin: 25px;
+  padding: 0 20px 10px 10px;
+  width: 400px;
+}
+#character #title,
+#bestJob #title {
+  text-align: center;
+}
+#character #points,
+#bestJob #points {
+  margin-left: 10px;
+}
+#character .skill,
+#bestJob .skill {
+  display: block;
+  margin-bottom: 10px;
 }
 #character .skill h3,
+#bestJob .skill h3,
 #character .skill h4,
-#character .skill span {
+#bestJob .skill h4,
+#character .skill span,
+#bestJob .skill span {
   display: inline-block;
   margin: 0;
   padding: 0;
+  margin-left: 10px;
 }
-#character .skill h3 {
+#character .skill h3,
+#bestJob .skill h3 {
   width: 200px;
-  margin: 10px;
 }
 #character .skill .up,
-#character .skill .down {
+#bestJob .skill .up,
+#character .skill .down,
+#bestJob .skill .down {
   display: inline-block;
   width: 32px;
   height: 21px;
   background-repeat: none;
-  margin-left: 10px;
+  cursor: pointer;
 }
-#character .skill .up {
+#character .skill .up,
+#bestJob .skill .up {
   background-image: url('/images/up.png');
 }
-#character .skill .down {
+#character .skill .down,
+#bestJob .skill .down {
   background-image: url('/images/down.png');
 }

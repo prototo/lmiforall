@@ -24,7 +24,8 @@ app.post('/accounts/new', function(req, res) {
       req.flash('error', 'there was a problem');
       res.redirect('back');
     } else {
-      res.redirect('/');
+      req.flash('success', 'you may now log in');
+      res.redirect('/login');
     }
   });
 });

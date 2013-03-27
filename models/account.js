@@ -4,18 +4,18 @@ var mongoose = require('mongoose'),
 
 // account object schema
 var AccountSchema = new Schema({
-  username: String,
+  username: { type: String, required: true, unique: true },
   
   // password
-  salt: String,
-  hash: String,
+  salt: { type: String, required: true },
+  hash: { type: String, required: true }
 
   // add all that other stuff
 });
 
 // generate the salt and hash for the new user object
 AccountSchema.virtual('password').set(function(password) {
-  var salt = this.salt = bcrypt.getSaltSync(10);
+  var salt = this.salt = bcrypt.genSaltSync(10);
   this.hash = bcrypt.hashSync(password, salt);
 });
 

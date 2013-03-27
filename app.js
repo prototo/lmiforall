@@ -8,7 +8,8 @@ var express = require('express')
   , path = require('path')
   , mongoose = require('mongoose')
   , mongoStore = require('connect-mongo')(express)
-  , passport = require('passport');
+  , passport = require('passport')
+  , flash = require('connect-flash');
 
 // connect to the databse
 mongoose.connect('mongodb://localhost/bootstrap');
@@ -43,6 +44,8 @@ app.configure(function(){
   }));
   app.use(passport.initialize());
   app.use(passport.session());
+  app.use(flash());
+  require('./config/helpers');
   app.use(app.router);
   app.use(require('less-middleware')({ src: __dirname + '/public' }));
   app.use(express.static(path.join(__dirname, 'public')));

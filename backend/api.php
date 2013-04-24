@@ -86,7 +86,7 @@ for ($i = 0; $i<count($subjects); $i++) {
 	// pick random $books_per_subject[$i]
 	for ($j = 0; $j < $books_per_subject[$i]; $j++) {
 		$sub = $subjects[$i];
-		$randomItemIndex = $j;
+		$randomItemIndex = $j; 
 
 
 

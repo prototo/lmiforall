@@ -49,6 +49,8 @@ for ($i=0; $i<count($return_skills_values); $i++) {
 	}
 }
 
+if ($tot_skills == 0)
+	exit;
 
 
 $books_per_subject=array();
@@ -57,10 +59,9 @@ for ($i=0; $i<count($subjects); $i++) {
 	$books_per_subject[$i] = round($diffs[$i] / $tot_skills * $BOOKS);
 }
 
-$output = array();
+$out = array();
 // 4. collect books
 for ($i = 0; $i<count($subjects); $i++) {
-	// TODO here goes the CURL call & JSON PARSING
 	$curl = curl_init();
 
 	$url = $url."q=subject=".$subjects[$i]."&key=".$key;
@@ -72,15 +73,21 @@ for ($i = 0; $i<count($subjects); $i++) {
 
 	$outputDecoded = json_decode($output, 1);
 
-	// pick random $books_per_subject[$i]
-	
-	$outputDecoded["items"][][]);
 
-	//$output[] = array("title" => "TITLE", "description" => "DESCRIPTION", "thumbnail" => "THUMBNAIL", "eBookLink" => "EBOOKLINK");
+	// pick random $books_per_subject[$i]
+	for ($j = 0; $j < count($books_per_subject); $j++) {
+		$sub = $subjects[$i];
+		$randomItemIndex = rand(0,9);
+		$title = $outputDecoded["items"][$randomItemIndex]["volumeInfo"]["title"];
+		$desc = $outputDecoded["items"][$randomItemIndex]["volumeInfo"]["description"];
+		$image = $outputDecoded["items"][$randomItemIndex]["volumeInfo"]["imageLinks"]["thumbnail"];
+		$ebook = $outputDecoded["items"][$randomItemIndex]["accessInfo"]["webReaderLink"];
+		$out[] = array("title" => $title, "description" => $desc, "thumbnail" => $image, "eBookLink" => $ebook, "subject" => $sub);
+	}
 } 
 
 // 5. return json out of the array
-//echo json_encode($output);
+echo json_encode($out);
 
 
 

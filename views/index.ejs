@@ -1,45 +1,8 @@
 <% layout('layout') -%>
 
-<% skills = ['mathreason', 'programming', 'techdesign', 'mean', 'numbers', 'science', 'maths', 'principal    ', 'ordering', 'dedreason']; %>
-
-<h1 id="pageTitle"><%= title %></h1>
 <div id="content">
 
-  <div id="character">
-    <h1 id="title">You!</h1>
-    <h3 id="points">
-      Job points: <span></span>
-    </h3>
-    <div class="skills">
-      <% skills.forEach(function(skill) { %>
-        <div class="skill" data-skill="<%= skill %>">
-          <h3><%= skill %></h3>
-          <span class="up"></span>
-          <span class="down"></span>
-          <h4 class="level">0</h4>
-          <h4 class="ratio">
-            (<span></span>&#37;)
-          </h4>
-        </div>
-      <% }) %>
-    </div>
-  </div>
-
-  <div id="bestJob">
-    <h2 id="title"></h2>
-    <h4 class="description"></h4>
-    <h3 class="pay">&pound;<span></span> per week</h3>
-    <div class="skills">
-      <% skills.forEach(function(skill) { %>
-        <div class="skill" data-skill="<%= skill %>">
-          <h3><%= skill %></h3>
-          <h4 class="ratio">
-            <span></span>&#37;
-          </h4>
-        </div>
-      <% }) %>
-    </div>
-  </div>
+  <a href="/login">Log in</a>
+  <a href="/register">Register</a>
 
 </div>
-

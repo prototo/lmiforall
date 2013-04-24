@@ -1,19 +1,13 @@
 var Account = require('../models/account'),
     passport = require('passport');
 
-app.get('/accounts', function(req, res) {
-  res.render('index', {
-    title: 'accounts'
-  });
-});
-
-app.get('/accounts/new', function(req, res) {
+app.get('/register', function(req, res) {
   res.render('accounts/new', {
-    title: 'new account'
+    title: 'Register'
   });
 });
 
-app.post('/accounts/new', function(req, res) {
+app.post('/register', function(req, res) {
   var account = new Account({
     username: req.body.username,
     password: req.body.password
@@ -21,10 +15,10 @@ app.post('/accounts/new', function(req, res) {
 
   account.save(function(err) {
     if (err) {
-      req.flash('error', 'there was a problem');
-      res.redirect('back');
+      req.flash('error', 'There was a problem');
+      res.redirect('/');
     } else {
-      req.flash('success', 'you may now log in');
+      req.flash('success', 'You may now log in');
       res.redirect('/login');
     }
   });
@@ -32,7 +26,7 @@ app.post('/accounts/new', function(req, res) {
 
 app.get('/login', function(req, res) {
   res.render('accounts/login', {
-    title: 'login'
+    title: 'Login'
   });
 });
 
@@ -40,7 +34,7 @@ app.post('/login', function(req, res, next) {
   passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login',
-    failureFlash: 'you failed' 
+    failureFlash: 'Failed to log in, check your user name and password and try again' 
   })(req, res, next);
 });
 

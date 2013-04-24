@@ -86,7 +86,7 @@ $(function() {
     }
 
     function render() {
-      if (!elm.length) alert('page doesn\'t look right...');
+      if (!elm.length) return;
 
       // render available job points
       elm.find('#points span').html(points);

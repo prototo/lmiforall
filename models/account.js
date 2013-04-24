@@ -14,7 +14,12 @@ var AccountSchema = new Schema({
   skills: [{
     name: String,
     ratio: Number
-  }]
+  }],
+
+  job: {
+    name: String,
+    soc: String
+  }
 });
 
 // generate the salt and hash for the new user object

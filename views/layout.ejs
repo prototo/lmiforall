@@ -6,6 +6,13 @@
     <link rel="stylesheet" href="/stylesheets/style.css">
   </head>
   <body>
+    <% if (user) { %>
+      <div id="user">
+        <span><%= user.username %></span>
+        <a href="/logout">Log out</a>
+      </div>
+    <% } %>
+    <h1 id="pageTitle"><%= title %></h1>
     <%- body -%>
     <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

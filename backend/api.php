@@ -1,5 +1,11 @@
 <?php
 
+function make_seed()
+{
+  list($usec, $sec) = explode(' ', microtime());
+  return (float) $sec + ((float) $usec * 100000);
+}
+srand(make_seed());
 
 $skills = array();
 $skills[0] = "mathreason";
@@ -49,38 +55,53 @@ for ($i=0; $i<count($return_skills_values); $i++) {
 	}
 }
 
+if ($tot_skills == 0)
+	exit;
 
 
 $books_per_subject=array();
-// 3. calculcate number of books required for each selected skill
+// 3. calculcate number of books required for each selected  skill
 for ($i=0; $i<count($subjects); $i++) {
 	$books_per_subject[$i] = round($diffs[$i] / $tot_skills * $BOOKS);
 }
 
-$output = array();
+
+$out = array();
 // 4. collect books
 for ($i = 0; $i<count($subjects); $i++) {
-	// TODO here goes the CURL call & JSON PARSING
 	$curl = curl_init();
 
-	$url = $url."q=subject=".$subjects[$i]."&key=".$key;
+	$url2 = $url."q=subject=".$subjects[$i]."&key=".$key;
 
-	curl_setopt($curl, CURLOPT_URL, $url);
+	curl_setopt($curl, CURLOPT_URL, $url2);
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)');
 	$output = curl_exec($curl);
 
+
 	$outputDecoded = json_decode($output, 1);
 
-	// pick random $books_per_subject[$i]
-	
-	$outputDecoded["items"][][]);
+	$randomList = array();
 
-	//$output[] = array("title" => "TITLE", "description" => "DESCRIPTION", "thumbnail" => "THUMBNAIL", "eBookLink" => "EBOOKLINK");
+	// pick random $books_per_subject[$i]
+	for ($j = 0; $j < $books_per_subject[$i]; $j++) {
+		$sub = $subjects[$i];
+		$randomItemIndex = $j; 
+
+
+
+		$title = $outputDecoded["items"][$randomItemIndex]["volumeInfo"]["title"];
+		$desc = $outputDecoded["items"][$randomItemIndex]["volumeInfo"]["description"];
+		$image = $outputDecoded["items"][$randomItemIndex]["volumeInfo"]["imageLinks"]["thumbnail"];
+		$ebook = $outputDecoded["items"][$randomItemIndex]["accessInfo"]["webReaderLink"];
+		$out[] = array("title" => $title, "description" => $desc, "thumbnail" => $image, "eBookLink" => $ebook, "subject" => $sub);
+	}
+
+	//var_dump($randomList);
 } 
 
-// 5. return json out of the array
-//echo json_encode($output);
+// 5 - return json out of the array
+echo json_encode($out);
 
 
 

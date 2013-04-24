@@ -55,22 +55,6 @@ $(function() {
       ratios[skill] = Math.round((val/MAX_POINTS) * 100);
     }
 
-    // compare the user with a list of jobs
-    function compareJobs(jobs) {
-      var bestScore = 9999, bestJob;
-
-      _.each(jobs, function(job) {
-        var score = _compareJob(job);
-
-        if (!bestJob || score < bestScore) {
-          bestJob = job;
-          bestScore = score;
-        }
-      });
-
-      return bestJob;
-    }
-
     // compare the user with a job
     // outputs the total points difference (lower == better)
     function _compareJob(job) {
@@ -94,9 +78,8 @@ $(function() {
       _.each(skillList, function(skill) {
         elm.find('.skill.' + skill).find('.level').html(skills[skill]);
         elm.find('.skill.' + skill).find('.ratio span').html(ratios[skill]);
+        elm.find('.skill.' + skill).find('input').val(ratios[skill]);
       });
-
-      compareJobs(jobs);
     }
 
     return {
@@ -105,30 +88,12 @@ $(function() {
       skills: skills,
       ratios: ratios,
 
-      compareJobs: compareJobs,
-
       skillUp: skillUp,
       skillDown: skillDown,
 
       render: render
     };
   })();
-
-  window.bestJob = function() {
-    var elm = $('#bestJob'),
-        job = character.compareJobs(jobs);
-
-  console.log(job);
-
-    elm.find('#title').html(job.title);
-    elm.find('.description').html(job.description);
-    elm.find('.pay span').html(job.pay + " ");
-    
-    _.each(job.skills, function(skill) {
-      console.log(skill.name, skill.ratio);
-      elm.find('.skill.' + skill.name).find('.ratio span').html(skill.ratio);
-    });
-  }
 
   // DOM EVENTS
   $(document).on('click', '.skill .up', function(e) {
@@ -137,7 +102,6 @@ $(function() {
 
     character.skillUp(name);
     character.render();
-    bestJob();
   });
 
   $(document).on('click', '.skill .down', function(e) {
@@ -146,17 +110,8 @@ $(function() {
 
     character.skillDown(name);
     character.render();
-    bestJob();
   });
 
-  // INIT CODES
-  $.ajax('/jobs', {
-    method: 'post',
-    success: function(res) {
-      jobs = res;
-
-      character.render();
-    }
-  });
+  character.render();
 
 });

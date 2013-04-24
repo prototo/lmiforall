@@ -10,6 +10,13 @@
     "jade": "*",
     "request": "~2.14.0",
     "mongoose": "~3.5.7",
-    "less-middleware": "~0.1.9"
+    "less-middleware": "~0.1.9",
+    "underscore": "~1.4.4",
+    "passport-local": "~0.1.6",
+    "passport": "~0.1.16",
+    "connect-mongo": "~0.3.2",
+    "mongoose": "~3.5.9",
+    "bcrypt": "~0.7.5",
+    "connect-flash": "~0.1.0"
   }
 }

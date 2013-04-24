@@ -49,6 +49,8 @@ for ($i=0; $i<count($return_skills_values); $i++) {
 	}
 }
 
+
+
 $books_per_subject=array();
 // 3. calculcate number of books required for each selected skill
 for ($i=0; $i<count($subjects); $i++) {
@@ -64,15 +66,15 @@ for ($i = 0; $i<count($subjects); $i++) {
 	$url = $url."q=subject=".$subjects[$i]."&key=".$key;
 
 	curl_setopt($curl, CURLOPT_URL, $url);
-	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)');
 	$output = curl_exec($curl);
 
-	$outputDecoded = json_decode($output, 0);
+	$outputDecoded = json_decode($output, 1);
 
 	// pick random $books_per_subject[$i]
-	echo $outputDecoded["items"][0]["id"];
 	
+	$outputDecoded["items"][][]);
 
 	//$output[] = array("title" => "TITLE", "description" => "DESCRIPTION", "thumbnail" => "THUMBNAIL", "eBookLink" => "EBOOKLINK");
 } 

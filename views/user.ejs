@@ -1,7 +1,8 @@
 <% layout('layout') -%>
 
-<h2>Quests</h2>
-<div class="quest">
-  <h3>Quest title</h3>
-  <p>This will increase your something</p>
-</div>
+<% books.forEach(function(book) { %>
+  <div class="book">
+    <h3 id="bookname"><%= book.title %></h3>
+    <p><%= book.description || 'No description available' %></p>
+  </div>
+<% }) %>

@@ -1,9 +1,12 @@
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <link rel="stylesheet" href="/stylesheets/normalize.css">
-    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>Job Quest</title>
+    <meta charset="utf-8" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no" />
+    <link rel="stylesheet" href="stylesheets/styles.css" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400' rel='stylesheet' type='text/css'>
   </head>
   <body>
     <% ['error', 'success'].forEach(function(key) { %>
@@ -19,10 +22,11 @@
         <a href="/logout">Log out</a>
       </div>
     <% } %>
-    <h1 id="pageTitle"><%= title %></h1>
-    <div id="content">
-      <%- body -%>
+    <div class="logocontainer">
+      <img src="images/job.png" id="logo" alt="logo"/>
     </div>
+    <h3 id="pageTitle"><%= title %></h3>
+    <%- body -%>
     <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="/javascripts/script.js"></script>

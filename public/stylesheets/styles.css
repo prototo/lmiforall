@@ -1,0 +1,88 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: auto;
+    text-align: center;
+    padding-bottom: 1em;
+}
+.logocontainer{
+    width: 100%;
+}
+
+.catcontainer {
+    width: 100%;
+    height: 500px;
+}
+#logo {
+    width: 100%;
+    height:100px;
+}
+
+#loginbutton {
+    height: 50px;
+    width: 95%;
+    border: none;
+    border-radius: 15px;
+    background: #2e7aa6;
+    color: white;
+    font-size: 16.5px;
+    font-weight: lighter;
+    text-decoration: none;
+    -webkit-backface-visibility: hidden;
+}
+
+#ffs {
+    padding-bottom: 20px;
+}
+
+.next {
+    height: 50px;
+    width: 95%;
+    border: none;
+    border-radius: 15px;
+    background: #2ea667;
+    color: white;
+    font-size: 16.5px;
+    font-weight: lighter;
+    text-decoration: none;
+    -webkit-backface-visibility: hidden; 
+}
+
+a {
+    text-decoration: none;
+    color: #2e7aa6;
+    opacity: 0.6;
+    transition: color .25s ease-in-out;
+   -moz-transition: color .25s ease-in-out;
+   -webkit-transition: color .25s ease-in-out;
+}
+
+a:hover{
+    color: #2ea667;
+}
+
+#uparrow{
+    padding-left: 20px;
+}
+
+.skill, .job, .book {
+    margin: auto;
+    margin-bottom: 1em;
+    width: 95%;
+    background: #2e7aa6;
+    border: none;
+    border-radius: 15px;
+    color: #fff;
+    font-size: 16.5px;
+    font-weight: lighter;
+    text-decoration: none;
+    -webkit-backface-visibility: hidden;
+}
+
+.skill h3, .skill h4 {
+  display: inline-block;
+}
+
+@import url(style-screen.css) screen;
+@import url(style-small.css) print, handheld;
+@import url(style-large.css) screen and (min-width: 801px);
+@import url(style-small.css) screen and (max-width: 800px);

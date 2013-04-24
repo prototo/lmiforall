@@ -18,3 +18,25 @@ app.post('/jobs', function(req, res) {
     res.end(JSON.stringify(jobs));
   });
 });
+
+app.get('/job', function(req, res) {
+  if (!req.user) {
+    res.redirect('/');
+    return;
+  }
+
+  Job.findOne({soc: req.user.job}, function(err, job) {
+    if (err) {
+      console.log(err);
+      req.flash('Something went wrong, sorry');
+      res.redirect('/');
+    } else {
+    console.log(req.user.job);
+    console.log(job);
+      res.render('job', {
+        title: job.title,
+        job: job
+      });
+    }
+  });
+});

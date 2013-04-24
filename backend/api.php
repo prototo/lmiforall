@@ -54,7 +54,7 @@ if ($tot_skills == 0)
 
 
 $books_per_subject=array();
-// 3. calculcate number of books required for each selected skill
+// 3. calculcate number of books required for each selected  skill
 for ($i=0; $i<count($subjects); $i++) {
 	$books_per_subject[$i] = round($diffs[$i] / $tot_skills * $BOOKS);
 }

@@ -59,7 +59,6 @@ for ($i=0; $i<count($subjects); $i++) {
 	$books_per_subject[$i] = round($diffs[$i] / $tot_skills * $BOOKS);
 }
 
-var_dump($books_per_subject);
 
 $out = array();
 // 4. collect books
@@ -73,7 +72,6 @@ for ($i = 0; $i<count($subjects); $i++) {
 	curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)');
 	$output = curl_exec($curl);
 
-	echo $url2."</br>";
 
 	$outputDecoded = json_decode($output, 1);
 
@@ -82,7 +80,7 @@ for ($i = 0; $i<count($subjects); $i++) {
 	for ($j = 0; $j < $books_per_subject[$i]; $j++) {
 		$sub = $subjects[$i];
 
-		$randomItemIndex = $j;
+		$randomItemIndex = rand(0,9);
 		$title = $outputDecoded["items"][$randomItemIndex]["volumeInfo"]["title"];
 		$desc = $outputDecoded["items"][$randomItemIndex]["volumeInfo"]["description"];
 		$image = $outputDecoded["items"][$randomItemIndex]["volumeInfo"]["imageLinks"]["thumbnail"];

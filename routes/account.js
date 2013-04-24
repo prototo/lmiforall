@@ -87,11 +87,12 @@ app.post('/register', function(req, res) {
       }
 
       var bestTot = 99999,
-        bestSoc;
+        bestSoc = 0;
 
       jobs.forEach(function(job) {
         var total = 0;
-        jskills = {}, bskills = {};
+        var jskills = {}, bskills = {};
+
         job.skills.forEach(function(skill) {
           jskills[skill.name] = parseInt(skill.ratio);
         });
@@ -102,16 +103,17 @@ app.post('/register', function(req, res) {
         skills.forEach(function(skill) {
           var bratio = bskills[skill],
             jratio = jskills[skill];
-
-          if (jratio < bratio) total += (jratio - bratio);
+console.log(jratio, bratio, jratio < bratio, (jratio - bratio));
+          if (jratio > bratio) total += (jratio - bratio);
         });
-
-        if (total > bestTot) {
+console.log(total, bestTot);
+        if (total < bestTot) {
           bestTot = total;
           bestSoc = job.soc;
         }
       });
 
+console.log(bestTot, bestSoc);
       var account = new Account({
         username: req.body.username,
         password: req.body.password,

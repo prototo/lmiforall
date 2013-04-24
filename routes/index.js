@@ -31,8 +31,6 @@ app.get('/job', function(req, res) {
       req.flash('Something went wrong, sorry');
       res.redirect('/');
     } else {
-    console.log(req.user.job);
-    console.log(job);
       res.render('job', {
         title: job.title,
         job: job

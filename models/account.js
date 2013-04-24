@@ -8,9 +8,13 @@ var AccountSchema = new Schema({
   
   // password
   salt: { type: String, required: true },
-  hash: { type: String, required: true }
+  hash: { type: String, required: true },
 
   // add all that other stuff
+  skills: [{
+    name: String,
+    ratio: Number
+  }]
 });
 
 // generate the salt and hash for the new user object

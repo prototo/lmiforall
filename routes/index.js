@@ -2,6 +2,11 @@ var mongoose = require('mongoose'),
     Job = require('../models/job');
 
 app.get('/', function(req, res) {
+  if (req.user) {
+    res.redirect('/user');
+    return;
+  }
+
   res.render('index', {
     title: 'Job Quest'
   });

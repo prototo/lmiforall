@@ -1,35 +1,28 @@
 <% layout('../layout') -%>
 
-<% skills = ['mathreason', 'programming', 'techdesign', 'mean', 'numbers', 'science', 'maths', 'principal    ', 'ordering', 'dedreason']; %>
-
-<div id="content">
-
+<div id="character">
   <form method="post">
-    
-    <div id="character">
-      <label>User name:</label><input type="text" name="username"></input><br />
-      <label>Password:</label><input type="password" name="password"></input><br />
-      <h3 id="points">
-        Job points: <span></span>
-      </h3>
-      <div class="skills">
-        <% skills.forEach(function(skill) { %>
-          <div class="skill" data-skill="<%= skill %>">
-            <h3><%= skill %></h3>
-            <span class="up"></span>
-            <span class="down"></span>
-            <h4 class="level">0</h4>
-            <h4 class="ratio">
-              (<span></span>&#37;)
-            </h4>
-            <input name="skills[<%= skill %>]" type="hidden"></input>
-          </div>
-        <% }) %>
-      </div>
+    <label>User name:</label><input type="text" name="username"></input><br />
+    <label>Password:</label><input type="password" name="password"></input><br />
+    <h3 id="points">
+      Job points: <span></span>
+    </h3>
+    <div class="skills">
+      <% skills.forEach(function(skill) { %>
+        <div class="skill <%= skill %>" data-skill="<%= skill %>">
+          <h3><%= skill %></h3>
+          <span class="up"></span>
+          <span class="down"></span>
+          <h4 class="level">0</h4>
+          <h4 class="ratio">
+            (<span></span>&#37;)
+          </h4>
+          <input name="skills[<%= skill %>]" type="hidden"></input>
+        </div>
+      <% }) %>
     </div>
 
     <input type="submit" value="Register"></input>
   </form>
-
 </div>
 

@@ -2,10 +2,30 @@ body {
   background: #131313;
   padding: 10px;
 }
+#messages {
+  position: fixed;
+  color: #FFF;
+  top: 0;
+  left: 0;
+  right: 0;
+  font-weight: 700;
+}
+#messages .message {
+  display: block;
+  margin: auto;
+  text-align: center;
+  padding: 0.25em 0;
+}
+#messages .error {
+  background: #f00;
+}
+#messages .success {
+  background: #BADA55;
+}
 #pageTitle {
   text-align: center;
   background: #eee;
-  width: 970px;
+  width: 1045px;
   margin: auto;
   margin-top: 25px;
 }
@@ -17,13 +37,14 @@ body {
   width: 1045px;
   margin: auto;
 }
-#pageTitle,
-#character,
-#bestJob {
+#content,
+#pageTitle {
+  background: #eee;
   border-width: 21px 21px 21px 21px;
   border-image: url('/images/border.png') 21 21 21 21 repeat;
   -moz-border-image: url('/images/border.png') 21 21 21 21 repeat;
   -webkit-border-image: url('/images/border.png') 21 21 21 21 repeat;
+  margin-bottom: 1em;
 }
 #bestJob {
   display: none;

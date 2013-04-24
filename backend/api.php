@@ -100,7 +100,7 @@ for ($i = 0; $i<count($subjects); $i++) {
 	//var_dump($randomList);
 } 
 
-// 5. return json out of the array
+// 5 - return json out of the array
 echo json_encode($out);
 
 

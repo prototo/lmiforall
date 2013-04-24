@@ -1,5 +1,11 @@
 <?php
 
+function make_seed()
+{
+  list($usec, $sec) = explode(' ', microtime());
+  return (float) $sec + ((float) $usec * 100000);
+}
+srand(make_seed());
 
 $skills = array();
 $skills[0] = "mathreason";
@@ -75,18 +81,23 @@ for ($i = 0; $i<count($subjects); $i++) {
 
 	$outputDecoded = json_decode($output, 1);
 
+	$randomList = array();
 
 	// pick random $books_per_subject[$i]
 	for ($j = 0; $j < $books_per_subject[$i]; $j++) {
 		$sub = $subjects[$i];
+		$randomItemIndex = $j;
 
-		$randomItemIndex = rand(0,9);
+
+
 		$title = $outputDecoded["items"][$randomItemIndex]["volumeInfo"]["title"];
 		$desc = $outputDecoded["items"][$randomItemIndex]["volumeInfo"]["description"];
 		$image = $outputDecoded["items"][$randomItemIndex]["volumeInfo"]["imageLinks"]["thumbnail"];
 		$ebook = $outputDecoded["items"][$randomItemIndex]["accessInfo"]["webReaderLink"];
 		$out[] = array("title" => $title, "description" => $desc, "thumbnail" => $image, "eBookLink" => $ebook, "subject" => $sub);
 	}
+
+	//var_dump($randomList);
 } 
 
 // 5. return json out of the array

@@ -64,7 +64,7 @@ function scrape() {
 }
 
 function normalise(onet) {
-  var result = [],
+  var result = {},
       total = 0;
 
   _.each(onet.skills, function(skill) {
@@ -73,6 +73,7 @@ function normalise(onet) {
 
   _.each(onet.skills, function(skill) {
     var ratio = Math.round((skill.score / total) * 100);
+    // result[skill.name] = ratio;
     result.push({
       name: skill.name,
       ratio: ratio
